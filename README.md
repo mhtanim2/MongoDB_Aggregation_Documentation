@@ -196,7 +196,8 @@ An aggregation pipeline consists of `one or more stages` that process documents:
     "$date": "2022-06-04T07:21:51.007Z"
   },
   "BrandID": 1654327460
-}]```
+}]
+```
 
 
 
@@ -256,7 +257,8 @@ An aggregation pipeline consists of `one or more stages` that process documents:
     "$date": "2022-06-04T07:21:51.016Z"
   },
   "CategoryID": 1654327885
-}]```
+}]
+```
 
 
 
@@ -388,7 +390,8 @@ An aggregation pipeline consists of `one or more stages` that process documents:
     "$date": "2022-06-04T07:21:51.032Z"
   },
   "ProductID": 1654332673
-}]```
+}]
+```
 
 - ### Create/Insert Database
  db.`CollectionName`.insertMany([{Json File}])
