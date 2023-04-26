@@ -102,6 +102,294 @@ An aggregation pipeline consists of `one or more stages` that process documents:
     "city" : "Dhaka"
 }
 ```
+
+
+### 1.2 Brands JSON File
+```javascript
+[{
+  "_id": {
+    "$oid": "627ec104bd2cbc8150345033"
+  },
+  "Name": "Samsung",
+  "CreatedDate": {
+    "$date": "2022-05-13T20:33:30.072Z"
+  },
+  "BrandID": 1652474116
+},{
+  "_id": {
+    "$oid": "629b088b43c8ce4c37191388"
+  },
+  "Name": "Walton",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.007Z"
+  },
+  "BrandID": 1654327435
+},{
+  "_id": {
+    "$oid": "629b089143c8ce4c3719138a"
+  },
+  "Name": "LG",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.007Z"
+  },
+  "BrandID": 1654327441
+},{
+  "_id": {
+    "$oid": "629b089743c8ce4c3719138c"
+  },
+  "Name": "Singer",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.007Z"
+  },
+  "BrandID": 1654327447
+},{
+  "_id": {
+    "$oid": "629b08a443c8ce4c3719138e"
+  },
+  "Name": "Vision",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.007Z"
+  },
+  "BrandID": 1654327460
+}][{
+  "_id": {
+    "$oid": "627ec104bd2cbc8150345033"
+  },
+  "Name": "Samsung",
+  "CreatedDate": {
+    "$date": "2022-05-13T20:33:30.072Z"
+  },
+  "BrandID": 1652474116
+},{
+  "_id": {
+    "$oid": "629b088b43c8ce4c37191388"
+  },
+  "Name": "Walton",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.007Z"
+  },
+  "BrandID": 1654327435
+},{
+  "_id": {
+    "$oid": "629b089143c8ce4c3719138a"
+  },
+  "Name": "LG",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.007Z"
+  },
+  "BrandID": 1654327441
+},{
+  "_id": {
+    "$oid": "629b089743c8ce4c3719138c"
+  },
+  "Name": "Singer",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.007Z"
+  },
+  "BrandID": 1654327447
+},{
+  "_id": {
+    "$oid": "629b08a443c8ce4c3719138e"
+  },
+  "Name": "Vision",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.007Z"
+  },
+  "BrandID": 1654327460
+}]```
+
+
+
+### 1.3 Category JSON File
+```javascript
+[{
+  "_id": {
+    "$oid": "627ec44dfb611734ae00f2c3"
+  },
+  "Name": "TV",
+  "CreatedDate": {
+    "$date": "2022-05-13T20:48:22.139Z"
+  },
+  "CategoryID": 1652474957
+},{
+  "_id": {
+    "$oid": "629b0a1143c8ce4c37191390"
+  },
+  "Name": "Fan",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.016Z"
+  },
+  "CategoryID": 1654327825
+},{
+  "_id": {
+    "$oid": "629b0a2543c8ce4c37191392"
+  },
+  "Name": "Refrigerator",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.016Z"
+  },
+  "CategoryID": 1654327845
+},{
+  "_id": {
+    "$oid": "629b0a2c43c8ce4c37191394"
+  },
+  "Name": "Water Heater",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.016Z"
+  },
+  "CategoryID": 1654327852
+},{
+  "_id": {
+    "$oid": "629b0a4443c8ce4c37191396"
+  },
+  "Name": "AC",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.016Z"
+  },
+  "CategoryID": 1654327876
+},{
+  "_id": {
+    "$oid": "629b0a4d43c8ce4c37191398"
+  },
+  "Name": "Oven",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.016Z"
+  },
+  "CategoryID": 1654327885
+}]```
+
+
+
+### 1.4 Products JSON File
+```javascript
+[{
+  "_id": {
+    "$oid": "629b1c0d43c8ce4c371913c7"
+  },
+  "CategoryID": 1654327845,
+  "BrandID": 1652474116,
+  "Name": "560 ltr Refrigerator",
+  "Price": "100000",
+  "Unit": "lt",
+  "Details": "Refrigerator",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.032Z"
+  },
+  "ProductID": 1654332429
+},{
+  "_id": {
+    "$oid": "629b1c3c43c8ce4c371913c9"
+  },
+  "CategoryID": 1654327845,
+  "BrandID": 1654327435,
+  "Name": "510 ltr Refrigerator",
+  "Price": "75000",
+  "Unit": "lt",
+  "Details": "Refrigerator",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.032Z"
+  },
+  "ProductID": 1654332476
+},{
+  "_id": {
+    "$oid": "629b1c5343c8ce4c371913cb"
+  },
+  "CategoryID": 1654327845,
+  "BrandID": 1654327447,
+  "Name": "410 ltr Refrigerator",
+  "Price": "35000",
+  "Unit": "lt",
+  "Details": "Refrigerator",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.032Z"
+  },
+  "ProductID": 1654332499
+},{
+  "_id": {
+    "$oid": "629b1cbd43c8ce4c371913cd"
+  },
+  "CategoryID": 1652474957,
+  "BrandID": 1652474116,
+  "Name": "32' TV",
+  "Price": "35000",
+  "Unit": "inch",
+  "Details": "LED TV",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.032Z"
+  },
+  "ProductID": 1654332605
+},{
+  "_id": {
+    "$oid": "629b1cd143c8ce4c371913cf"
+  },
+  "CategoryID": 1652474957,
+  "BrandID": 1654327435,
+  "Name": "42' TV",
+  "Price": "56000",
+  "Unit": "inch",
+  "Details": "LED TV",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.032Z"
+  },
+  "ProductID": 1654332625
+},{
+  "_id": {
+    "$oid": "629b1cd843c8ce4c371913d1"
+  },
+  "CategoryID": 1652474957,
+  "BrandID": 1654327435,
+  "Name": "32' TV",
+  "Price": "34000",
+  "Unit": "inch",
+  "Details": "LED TV",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.032Z"
+  },
+  "ProductID": 1654332632
+},{
+  "_id": {
+    "$oid": "629b1ce443c8ce4c371913d3"
+  },
+  "CategoryID": 1652474957,
+  "BrandID": 1654327441,
+  "Name": "32' TV",
+  "Price": "33000",
+  "Unit": "inch",
+  "Details": "LED TV",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.032Z"
+  },
+  "ProductID": 1654332644
+},{
+  "_id": {
+    "$oid": "629b1cf643c8ce4c371913d5"
+  },
+  "CategoryID": 1652474957,
+  "BrandID": 1654327447,
+  "Name": "32' TV",
+  "Price": "32000",
+  "Unit": "inch",
+  "Details": "LED TV",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.032Z"
+  },
+  "ProductID": 1654332662
+},{
+  "_id": {
+    "$oid": "629b1d0143c8ce4c371913d7"
+  },
+  "CategoryID": 1652474957,
+  "BrandID": 1654327447,
+  "Name": "42' TV",
+  "Price": "64000",
+  "Unit": "inch",
+  "Details": "LED TV",
+  "CreatedDate": {
+    "$date": "2022-06-04T07:21:51.032Z"
+  },
+  "ProductID": 1654332673
+}]```
+
 - ### Create/Insert Database
  db.`CollectionName`.insertMany([{Json File}])
  - Example: 
@@ -148,13 +436,7 @@ db.employee.insertMany(
     "designation" : "Sr Engineer", 
     "salary" : 70000.0, 
     "city" : "Dhaka"
-}
-]
-)
-
-
-
-
+}])
 
 ```
 - ## Show Collections in Database
