@@ -393,6 +393,30 @@ An aggregation pipeline consists of `one or more stages` that process documents:
 }]
 ```
 
+- ## Show Collections in Database
+```shell
+	show collections
+```
+In Order to delete a database switch to that database then you can dropDatabase()
+- ## Drop Database 
+```shell
+	use schools
+	db.dropDatabase()
+```
+If we want to create new collection belongs to an existing Database then you have to use `createCollection()` method
+- ## Collection Create
+```javascript
+	db.createCollection("employee")
+```
+If requires to delete an existing collection use drop() method
+- ## Drop Collection
+```javascript
+	db.employee.drop()
+```
+- ## Single Document Insert to a Collection
+```javascript
+	db.employee.insertOne({name:"Tanim",city:"Dhaka"})
+```
 - ### Create/Insert Database
  db.`CollectionName`.insertMany([{Json File}])
  - Example: 
@@ -442,53 +466,31 @@ db.employee.insertMany(
 }])
 
 ```
-- ## Show Collections in Database
-```shell
-	show collections
-```
-In Order to delete a database switch to that database then you can dropDatabase()
-- ## Drop Database 
-```shell
-	use schools
-	db.dropDatabase()
-```
-If we want to create new collection belongs to an existing Database then you have to use createCollection() method
-- ## Collection Create
-```javascript
-	db.createCollection("teachers")
-```
-If requires to delete an existing collection use drop() method
-- ## Drop Collection
-```javascript
-	db.teachers.drop()
-```
-- ## Single Document Insert to a Collection
-```javascript
-	db.students.insertOne({name:"Tahmid",city:"Dhaka"})
-```
-- ## Multiple Documents Insert to a Collection
-```javascript
-	db.students.insertMany([{name:"Mehrab",city:"Donia"},{name:"Namita",city:"Comillah"},{name:"Hafiz",city:"Rajbari"}])
-```
-- ## Find Single Document
-```javascript
-	db.students.findOne({name:"Namita"})
-```
 - ## Find All Documents
+- we have to use `aggregate` in every querry building
 ```javascript
-	db.studetns.find()
+	db.employee.aggregate([])
 ```
-projection means selecting only the necessary data rather than selecting whole of the data of a document.
 - ## MongoDB Projection
+`projection` means selecting only the necessary data rather than selecting whole of the data of a document.
+- `count` It will count total no of object or rows
 ```javascript
-	db.students.find({},{_id:0,name:1})
+	db.collectionName.aggregate([{$count:"total"}])
 ```
-> ## Projection
+- `sort` Sort data according to ites column. `1 Assending` & `-1 Dessending`
+```javascript
+	db.collectionName.aggregate([{$sort:{colName:-1}}])
+```
+- `limit` Use to project the data
+```javascript
+	db.collectionName.aggregate([{$limit:3}])
+```
+> ### Projection
 
 - It shows the projected column.
 - Projection uses boolean number.
 - `0 for skip column` & `1 for select column`
-- ## Query Operators
+- ### Query Operators
 1. <font style="color:green">$eq</font> : Equal To Operator
 2. <font style="color:green">$lt</font> : Less Than Operator
 3. <font style="color:green">$lte</font> : Less Than or Equal To Operator
@@ -498,37 +500,49 @@ projection means selecting only the necessary data rather than selecting whole o
 7. <font style="color:green">$in</font> : In Operator
 8. <font style="color:green">$nin</font> : Not In Operator
 
-- ## Query Operators Usage
-```javascript
-db.Products.find({price:{$eq:"1000"}})  
-db.Products.find({price:{$lt:"1000"}})  
-db.Products.find({price:{$lte:"1000"}})  
-db.Products.find({price:{$gt:"1000"}})  
-db.Products.find({price:{$gte:"1000"}})  
-db.Products.find({price:{$ne:"1000"}}) 
-db.Products.find({price:{$in:["100","200","3000"]}},{price:1})
-db.Products.find({price:{$nin:["100","200","3000"]}},{price:1})
-```
-
-- ## Logical Operators
+- ### Logical Operators Useage
 1. <font style="color:green">$and </font>: Logical AND Opeartor
 2. <font style="color:green">$or </font>: Logical OR Operator
-```javascript
-	db.products.find({$and:[{price:{$eq:"100"}},{special_price:{$eq:"NA"}}]},{price:1,special_price:1,category:1})
 
-	db.products.find({$or:[{price:{$eq:"100"}},{special_price:{$eq:"NA"}}]},{price:1,special_price:1,category:1})
+- `match` Filters the documents to pass only the documents that match the specified condition(s) to the next pipeline stage.
+```javascript
+	{ $match: { <query> } }
+```
+> using `Query` Operator
+```javascript
+	db.collectionName.aggregate([{$match:{colName:{$gte:data}}}]) // query: {$match:{salary:{$gte:50000}}}
+```
+> using `logical` Operator
+```javascript
+	db.collectionName.aggregate([{$match:
+    {$and:[
+    {colName:{$lte:data}},
+    {colName:{$ne:data}}
+    ]
+   }
+  }]) 
+  // query: {$match:
+    {$and:[
+    {salary:{$lte:50000}},
+    {city:{$ne:"Dhaka"}}]
+    }
+  }
+```
+```javascript
+	db.collectionName.aggregate([{$match:{colName:{$in:['data','data']}}}]) 
+   
+  // query: {$match:{city:{$in:['Dhaka','Rangpur']}}}
 ```
 
-To Select Specific number of records use limit method
-- ## Limit Records
+- `like` uses to find the typing data
 ```javascript
-	db.students.find().limit(5)
+	db.collectionName.aggregate([{$match:{colName:/data/}}]) // query: {$match:{city:/Dh/}}
+
 ```
-- ## Sort Records
-`(Ascending: 1, Descending: -1)`
+- `project` uses to show the data table according to the projection `1 for projection true` and `0 for projection false`
 ```javascript
-	db.students.find().sort({name:1,city:-1})
-	db.products.find({},{name:1}).sort({name:-1})
+	db.collectionName.aggregate([{$match:{colName:/data/}}]) // query: {$match:{city:/Dh/}}
+
 ```
 - ## Update One Document
 ```javascript
