@@ -551,6 +551,13 @@ db.employee.insertMany(
 	db.collectionName.aggregate([{ $group: { _id: "$name", total: { $sum: "$salary" } } }]) // Finding the each unique name total salary
 ```
 
+```javascript
+	db.collectionName.aggregate([{$group:{_id:"$city", avg:{$avg:"$salary"}}}]) // Finding the each unique name average salary
+```
+
+```javascript
+	db.collectionName.aggregate([{$group:{_id:{name:"$name",city:"$city"},total:{$sum:"$salary"}}}]) // Finding the each multiple unique average salary
+```
 - ## Update One Document
 ```javascript
 	db.students.updateOne({id:100,{$set:{name:"Anwar",city:"Dhaka"}}})
