@@ -537,13 +537,20 @@ db.employee.insertMany(
 - `like` uses to find the typing data
 ```javascript
 	db.collectionName.aggregate([{$match:{colName:/data/}}]) // query: {$match:{city:/Dh/}}
-
 ```
 - `project` uses to show the data table according to the projection `1 for projection true` and `0 for projection false`
 ```javascript
-	db.collectionName.aggregate([{$match:{colName:/data/}}]) // query: {$match:{city:/Dh/}}
-
+	db.collectionName.aggregate([{$project:{name:1,roll:1,class:1,_id:0}}])
 ```
+- `skip & limit` uses to skip the row and add the limitation in database
+```javascript
+	db.collectionName.aggregate([{$project:{name:1,city:1,_id:0}}])
+```
+- `group`The output is one document for each `unique group key`. Use the `_id` field in the $group pipeline stage to set the group key.
+```javascript
+	db.collectionName.aggregate([{ $group: { _id: "$name", total: { $sum: "$salary" } } }]) // Finding the each unique name total salary
+```
+
 - ## Update One Document
 ```javascript
 	db.students.updateOne({id:100,{$set:{name:"Anwar",city:"Dhaka"}}})
