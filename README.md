@@ -558,6 +558,19 @@ db.employee.insertMany(
 ```javascript
 	db.collectionName.aggregate([{$group:{_id:{name:"$name",city:"$city"},total:{$sum:"$salary"}}}]) // Finding the each multiple unique average salary
 ```
+- `lookup or Join` The `$lookup` stage adds a new array field to each input document. The new array field contains the matching documents from the `"joined"` collection. The `$lookup` stage passes these reshaped documents to the next stage. Syntax:
+```javascript
+	{
+   $lookup:
+     {
+       from: <collection to join>,
+       localField: <field from the input documents>,
+       foreignField: <field from the documents of the "from" collection>,
+       as: <name of output array field>
+     }
+}
+```
+
 - ## Update One Document
 ```javascript
 	db.students.updateOne({id:100,{$set:{name:"Anwar",city:"Dhaka"}}})
