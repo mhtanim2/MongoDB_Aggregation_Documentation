@@ -570,7 +570,7 @@ db.employee.insertMany(
      }
 }
 ```
-> Example:
+> Example
 ```javascript
 	db.products.aggregate([{
     $lookup:{from: "brands",
@@ -585,7 +585,38 @@ db.employee.insertMany(
        as: "newCat"}
 }])
 ```
+> Filter with Projection
+```javascript
+db.products.aggregate([{
+    $lookup:{from: "brands",
+       localField: "BrandID",
+       foreignField: "BrandID",
+       as: "newBra"}
+},
+{
+    $lookup:{from: "categories",
+       localField: "CategoryID",
+       foreignField: "CategoryID",
+       as: "newCat"}
+},
+{
+    $project:{
+        _id:0,
+        CategoryID:1,
+        BrandID:1,
+        ProductName:"$Name",
+        Price:1,
+        Unit:1,
+        Details:1,
+        CreatedDate:1,
+        ProductID:1,
+        BrandName: {$first:"$newBra.Name"},
+        CategoryName: {$first:"$newCat.Name"},
+    }
+}
+])
 
+```
 
 - ## Update One Document
 ```javascript
