@@ -570,6 +570,22 @@ db.employee.insertMany(
      }
 }
 ```
+> Example:
+```javascript
+	db.products.aggregate([{
+    $lookup:{from: "brands",
+       localField: "BrandID",
+       foreignField: "BrandID",
+       as: "newBra"}
+},
+{
+    $lookup:{from: "categories",
+       localField: "CategoryID",
+       foreignField: "CategoryID",
+       as: "newCat"}
+}])
+```
+
 
 - ## Update One Document
 ```javascript
