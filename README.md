@@ -485,12 +485,12 @@ db.employee.insertMany(
 ```javascript
 	db.collectionName.aggregate([{$limit:3}])
 ```
-> ### Projection
+- ## Query Operator
 
 - It shows the projected column.
 - Projection uses boolean number.
 - `0 for skip column` & `1 for select column`
-- ### Query Operators
+- ### Query Arithmetic Operators
 1. <font style="color:green">$eq</font> : Equal To Operator
 2. <font style="color:green">$lt</font> : Less Than Operator
 3. <font style="color:green">$lte</font> : Less Than or Equal To Operator
@@ -500,10 +500,11 @@ db.employee.insertMany(
 7. <font style="color:green">$in</font> : In Operator
 8. <font style="color:green">$nin</font> : Not In Operator
 
-- ### Logical Operators Useage
+- ### Query Logical Operators
 1. <font style="color:green">$and </font>: Logical AND Opeartor
 2. <font style="color:green">$or </font>: Logical OR Operator
 
+- ## Match
 - `match` Filters the documents to pass only the documents that match the specified condition(s) to the next pipeline stage.
 ```javascript
 	{ $match: { <query> } }
