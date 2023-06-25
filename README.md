@@ -490,7 +490,7 @@ db.employee.insertMany(
 - It shows the projected column.
 - Projection uses boolean number.
 - `0 for skip column` & `1 for select column`
-- ### Query Arithmetic Operators
+- ### Arithmetic Operators
 1. <font style="color:green">$eq</font> : Equal To Operator
 2. <font style="color:green">$lt</font> : Less Than Operator
 3. <font style="color:green">$lte</font> : Less Than or Equal To Operator
@@ -500,7 +500,7 @@ db.employee.insertMany(
 7. <font style="color:green">$in</font> : In Operator
 8. <font style="color:green">$nin</font> : Not In Operator
 
-- ### Query Logical Operators
+- ### Logical Operators
 1. <font style="color:green">$and </font>: Logical AND Opeartor
 2. <font style="color:green">$or </font>: Logical OR Operator
 
@@ -515,7 +515,7 @@ db.employee.insertMany(
 ```
 > using `logical` Operator
 ```javascript
-	db.collectionName.aggregate([{$match:
+db.collectionName.aggregate([{$match:
     {$and:[
     {colName:{$lte:data}},
     {colName:{$ne:data}}
@@ -534,19 +534,36 @@ db.employee.insertMany(
    
   // query: {$match:{city:{$in:['Dhaka','Rangpur']}}}
 ```
-
+- ## Like
 - `like` uses to find the typing data
 ```javascript
 	db.collectionName.aggregate([{$match:{colName:/data/}}]) // query: {$match:{city:/Dh/}}
 ```
+
+- ## Project
 - `project` uses to show the data table according to the projection `1 for projection true` and `0 for projection false`
 ```javascript
-	db.collectionName.aggregate([{$project:{name:1,roll:1,class:1,_id:0}}])
+	db.collectionName.aggregate([
+$project:{
+        _id:0,
+        CategoryID:1,
+        BrandID:1,
+        ProductName:"$Name",
+        Price:1,
+        Unit:1,
+        Details:1,
+        CreatedDate:1,
+        ProductID:1,
+        BrandName: {$first:"$newBra.Name"},
+        CategoryName: {$first:"$newCat.Name"},
+    }])
+ 
 ```
 - `skip & limit` uses to skip the row and add the limitation in database
 ```javascript
 	db.collectionName.aggregate([{$project:{name:1,city:1,_id:0}}])
 ```
+- ## Group
 - `group`The output is one document for each `unique group key`. Use the `_id` field in the $group pipeline stage to set the group key.
 ```javascript
 	db.collectionName.aggregate([{ $group: { _id: "$name", total: { $sum: "$salary" } } }]) // Finding the each unique name total salary
@@ -559,6 +576,7 @@ db.employee.insertMany(
 ```javascript
 	db.collectionName.aggregate([{$group:{_id:{name:"$name",city:"$city"},total:{$sum:"$salary"}}}]) // Finding the each multiple unique average salary
 ```
+- ## Lookup or Join
 - `lookup or Join` The `$lookup` stage adds a new array field to each input document. The new array field contains the matching documents from the `"joined"` collection. The `$lookup` stage passes these reshaped documents to the next stage. Syntax:
 ```javascript
 	{
@@ -618,5 +636,35 @@ db.products.aggregate([{
 ])
 
 ```
+- ## Facet
+The $facet stage allows you to create multi-faceted aggregations which characterize data across multiple dimensions, or facets, within a single aggregation stage. Multi-faceted aggregations provide multiple filters and categorizations to guide data browsing and analysis. Retailers commonly use faceting to narrow search results by creating filters on product price, manufacturer, size, etc.
+```javascript
+{ $facet:
+   {
+      <outputField1>: [ <stage1>, <stage2>, ... ],
+      <outputField2>: [ <stage1>, <stage2>, ... ],
+      ...
 
+   }
+}
+```
+> Example
+```javascript
+db.products.aggregate([
+    {
+        $facet: {
+            "total": [{ $count: "total" }
+            ],
+            "Data": [
+                // Filter out documents without a price e.g., _id: 7
+                { $match: { email: email } },
+                { $skip: skipRow },
+                { $limit: perPage },
+                
+            ],
+            "BrandData":[{$match:{brand:{$eq:"pran"}}}]
+        }
+    }
+])
 
+```
