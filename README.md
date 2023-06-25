@@ -572,7 +572,7 @@ db.employee.insertMany(
 ```
 > Example
 ```javascript
-	db.products.aggregate([{
+db.products.aggregate([{
     $lookup:{from: "brands",
        localField: "BrandID",
        foreignField: "BrandID",
@@ -618,22 +618,4 @@ db.products.aggregate([{
 
 ```
 
-- ## Update One Document
-```javascript
-	db.students.updateOne({id:100,{$set:{name:"Anwar",city:"Dhaka"}}})
 
-```
-- ## Update Documents
-> db.COLLECTION_NAME.update(SELECTION_CRITERIA, UPDATED_DATA)
-```javascript
-	db.students.update({id:100},{$set:{name:"Jahid",city:"Dhaka"}})
-```
-- ## Delete Document
-```javascript
-	db.students.remove({name:"Jahid",city:"Dhaka"})
-```
-- ## Beautify JSON Output
-`pretty()`
-```javascript
-	db.students.find().pretty()
-```
