@@ -1,44 +1,29 @@
 # Welcom to `MongoDB World`
 
 - [Aggregation Operations](#aggregation-operations)
-- [What MongoDB can Manage](#what-mongodb-can-manage)
-- [NoSQL Databases](#nosql-databases)
-- [NoSQL Behind History](#nosql-behind-history)
-- [Basic Terminology](#basic-terminology)
-- [Sample JSON Object](#sample-json-object)
-- [MongoDB Default ID](#mongodb-default-id)
-- [Advantages](#advantages)
-- [Where to use MongoDB?](#where-to-use-mongodb)
-- [MongoDB Edition](#mongodb-edition)
-- [Install MongoDB](#install-mongodb)
-- [MongoDB Data Modeling](#mongodb-data-modeling)
-- [Embeded Data Model](#embeded-data-model)
-- [Normalized Data Model](#normalized-data-model)
-- [Data Type](#data-type)
-- [MongoDB Shell](#mongodb-shell)
-- [MongoDB Help](#mongodb-help)
-- [MongoDB Statistics](#mongodb-statistics)
-- [Show Database Names](#show-database-names)
-- [Create Database](#create-database)
+- [Aggregation Pipeline](#aggregation-pipeline)
+- [1 Json Examples](#1-json-examples)
 - [Show Collections in Database](#show-collections-in-database)
 - [Drop Database](#drop-database)
-- [Single Document Insert](#single-document-insert-to-a-collection)
-- [Multiple Documents Insert](#multiple-documents-insert-to-a-collection)
-- [Find Single Document](#find-single-document)
+- [Collection Create](#collection-create)
+- [Drop Collection](#drop-collection)
+- [Single Document Insert to a Collection](#single-document-insert-to-a-collection)
+- [Create and Insert Database](#create-and-insert-database)
 - [Find All Documents](#find-all-documents)
 - [MongoDB Projection](#mongodb-projection)
-- [Projection](#projection)
-- [Query Operators Usage](#query-operators-usage)
+- [Query Operator](#query-operator)
+- [Arithmetic Operators](#arithmetic-operators)
 - [Logical Operators](#logical-operators)
-- [Limit Records](#limit-records)
-- [Sort Records](#sort-records)
-- [Update One Document](#update-one-document)
-- [Update Documents](#update-documents)
-- [Delete Document](#delete-document)
-- [Beautify JSON Output](#beautify-json-output)
+- [Match](#match)
+- [Like](#like)
+- [Project](#project)
+- [Group](#group)
+- [Lookup or Join](#lookup-or-join)
+- [Filter with Projection](#filter-with-projection)
+- [Facet](#facet)
 
 
-## Aggregation Operations 
+## Aggregation Operations
 
 Aggregation operations process multiple documents and return computed results. You can use aggregation operations to:
 - Group values from multiple documents together.
@@ -56,7 +41,7 @@ An aggregation pipeline consists of `one or more stages` that process documents:
 - Each stage performs an operation on the input documents. For example, a stage can filter documents, group documents, and calculate values.
 - The documents that are output from a stage are passed to the next stage.
 - An aggregation pipeline can return results for groups of documents. For example, return the total, average, maximum, and minimum values.
-
+## 1 Json Examples
 ### 1.1 Employee JSON File
 ```javascript
 { 
@@ -417,7 +402,7 @@ If requires to delete an existing collection use drop() method
 ```javascript
 	db.employee.insertOne({name:"Tanim",city:"Dhaka"})
 ```
-- ### Create/Insert Database
+- ### Create and Insert Database
  db.`CollectionName`.insertMany([{Json File}])
  - Example: 
 ```javascript
@@ -604,7 +589,7 @@ db.products.aggregate([{
        as: "newCat"}
 }])
 ```
-> Filter with Projection
+- ## Filter with Projection
 ```javascript
 db.products.aggregate([{
     $lookup:{from: "brands",
